@@ -1,0 +1,207 @@
+# https://www.toptal.com/developers/gitignore/api/python,venv,visualstudiocode tomonidan yaratilgan
+# https://www.toptal.com/developers/gitignore?templates=python,venv,visualstudiocode manzilida tahrirlang
+
+### Python ###
+# Bayt bilan kompilyatsiya qilingan / optimallashtirilgan / DLL fayllari
+__pycache__/
+*.py[kod]
+*$py.class
+
+# C kengaytmalari
+*.shunday
+
+# Tarqatish / qadoqlash
+.Python
+qurish/
+rivojlanish tuxumlari/
+distribyutor/
+yuklab olishlar/
+tuxum/
+.tuxum/
+kutubxona/
+lib64/
+qismlar/
+sdist/
+var/
+g'ildiraklar/
+ulashish/python-wheels/
+*.egg-info/
+.installed.cfg
+*.tuxum
+MANIFEST
+
+# PyInstaller
+# Odatda bu fayllar shablondan olingan python skripti tomonidan yoziladi
+# PyInstaller exe faylini yaratishdan oldin, unga sana/boshqa ma'lumotlarni kiritish uchun.
+*.manifest
+*.spec
+
+# O'rnatuvchi jurnallari
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Birlik sinovi / qamrov hisobotlari
+htmlcov/
+.toksin/
+.nox/
+.qavm
+.qamrovi.*
+.kesh
+burun testlari.xml
+qamrov.xml
+*.qopqoq
+*.py, muqova
+.gipoteza/
+.pytest_cache/
+qopqoq/
+
+# Tarjimalar
+*.mo
+*.pot
+
+# Django haqida ma'lumot:
+*.log
+mahalliy_settings.py
+db.sqlite3
+db.sqlite3-jurnal
+
+# Kolbadagi narsalar:
+misol/
+.websets-kesh
+
+# Yomon narsalar:
+.scrapy
+
+# Sfinks hujjatlari
+hujjatlar/_qurish/
+
+# PyBuilder
+.pybuilder/
+maqsad/
+
+# Jupyter daftari
+.ipynb_checkpoints
+
+# IPython
+profil_standart/
+ipython_config.py
+
+# pyenv
+# Kutubxona yoki paket uchun kod bo'lgani uchun ushbu fayllarni e'tiborsiz qoldirishni xohlashingiz mumkin
+# bir nechta muhitda ishlash uchun mo'ljallangan; aks holda, ularni quyidagi joylarda tekshiring:
+# .python versiyasi
+
+# quvur
+# pypa/pipenv#598 ga ko'ra, versiya boshqaruviga Pipfile.lock ni qo'shish tavsiya etiladi.
+# Biroq, hamkorlik holatida, agar platformaga xos bog'liqliklar yoki qaramliklar mavjud bo'lsa
+# platformalararo qo'llab-quvvatlashga ega bo'lmagan holda, pipenv ishlamaydigan yoki ishlamaydigan bog'liqliklarni o'rnatishi mumkin
+# barcha kerakli bog'liqliklarni o'rnating.
+#Pipfile.lock
+
+# she'riyat
+# Pipfile.lock ga o'xshash tarzda, odatda versiya boshqaruviga poetry.lock ni qo'shish tavsiya etiladi.
+# Bu, ayniqsa, takrorlanuvchanlikni ta'minlash uchun ikkilik paketlar uchun tavsiya etiladi va ko'proq
+# kutubxonalar uchun odatda e'tiborga olinmaydi.
+# https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#she'riyat.qulf
+
+# pdm
+# Pipfile.lock ga o'xshash, odatda versiya boshqaruviga pdm.lock ni qo'shish tavsiya etiladi.
+#pdm.lock
+# pdm loyiha bo'ylab konfiguratsiyalarni .pdm.toml da saqlaydi, lekin uni qo'shmaslik tavsiya etiladi.
+# versiya boshqaruvida.
+# https://pdm.fming.dev/#use-with-ide
+.pdm.toml
+
+# PEP 582; masalan, github.com/David-OConnor/pyflow va github.com/pdm-project/pdm tomonidan ishlatiladi
+__pypackages__/
+
+# Selderey mahsulotlari
+seldereybeat-jadvali
+seldereybeat.pid
+
+# SageMath tahlil qilingan fayllar
+*.sage.py
+
+# Atrof-muhit
+.env
+.venv
+muhit/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder loyiha sozlamalari
+.spyderproject
+.josuslik loyihasi
+
+# Arqon loyihasi sozlamalari
+.arqon loyihasi
+
+# mkdocs hujjatlari
+/sayt
+
+#mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre turini tekshirgich
+.pyre/
+
+# pytype statik tip analizatori
+.pytype/
+
+# Cython disk raskadrovka belgilari
+cython_debug/
+
+# PyCharm
+# JetBrainsga xos shablon alohida JetBrains.gitignore da saqlanadi, bu esa
+# https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore manzilida mavjud
+# va global gitignore ga qo'shilishi yoki ushbu faylga birlashtirilishi mumkin. Yadroviyroq ma'lumot uchun
+# parametr (tavsiya etilmaydi) butun idea papkasini e'tiborsiz qoldirish uchun quyidagilarni izohsiz qoldirishingiz mumkin.
+#.g'oya/
+
+### Python patchi ###
+# She'riyatning mahalliy konfiguratsiya fayli - https://python-poetry.org/docs/configuration/#local-configuration
+she'riyat.toml
+
+# ruff
+.ruff_cache/
+
+# LSP konfiguratsiya fayllari
+pyrightconfig.json
+
+### venv ###
+# Virtualkonvert
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+[Bb]in
+[Ii]o'z ichiga oladi
+[Ll]ib
+[Ll]ib64
+[Ll]lokal
+[S]skriptlar
+pyvenv.cfg
+pip-selfcheck.json
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.kod parchalari
+
+# Visual Studio kodi uchun mahalliy tarix
+.tarix/
+
+# O'rnatilgan Visual Studio kod kengaytmalari
+*.vsix
+
+### VisualStudioCode patchi ###
+# Fayllarning barcha mahalliy tarixini e'tiborsiz qoldiring
+.tarix
+.ionid
+
+# https://www.toptal.com/developers/gitignore/api/python,venv,visualstudiocode ning oxiri
