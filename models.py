@@ -1,4 +1,5 @@
 from sqlalchemy import Boolean, create_engine, String, Text
+
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 # postgresql+psycopg2://foydalanuvchi:parol@host:port/baza

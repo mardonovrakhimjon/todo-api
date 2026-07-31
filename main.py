@@ -12,24 +12,20 @@ from models import engine, Tasks, Base
 
 
 app = FastAPI()
-TASKS: list[dict] = list()
-with open("tasks.json", "r", encoding="utf-8") as f:
-    data = f.read()
-    if data:  # Agar fayl bo'sh bo'lmasa
-        TASKS = json.loads(data)
-# origins = [
-#     "*",
-# ]
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+origins = [
+    "*",
+]
 
-# Base.metadata.create_all(engine)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+Base.metadata.create_all(engine)
 
 
 @app.get("/api/health")
@@ -38,65 +34,54 @@ def health_view() -> dict:
 
 
 @app.get("/api/tasks")
-def get_tasks_view(
-    limit: int = Query(len(TASKS)),
-) -> list[dict]:
-    return TASKS[:limit]
-# def get_tasks_view(page: int = Query(1, ge=1), n: int = Query(4, ge=1)) -> list[dict]:
-#     offset = (page - 1) * n
-#     limit = n
-#     with Session(engine) as session:
-#         tasks: list[Tasks] = (
-#             session.query(Tasks)
-#             .order_by(desc(Tasks.id))
-#             .offset(offset)
-#             .limit(limit)
-#             .all()
-#         )
+def get_tasks_view(page: int = Query(1, ge=1), n: int = Query(4, ge=1)) -> list[dict]:
+    offset = (page - 1) * n
+    limit = n
+    with Session(engine) as session:
+        tasks: list[Tasks] = (
+            session.query(Tasks)
+            .order_by(desc(Tasks.id))
+            .offset(offset)
+            .limit(limit)
+            .all()
+        )
 
-#     result = []
-#     for task in tasks:
-#         result.append(
-#             {
-#                 "id": task.id,
-#                 "title": task.title,
-#                 "description": task.description,
-#                 "status": task.status,
-#             }
-#         )
+    result = []
+    for task in tasks:
+        result.append(
+            {
+                "id": task.id,
+                "title": task.title,
+                "description": task.description,
+                "status": task.status,
+            }
+        )
 
-#     return result
+    return result
 
 
 @app.get("/api/tasks/{task_id}")
-def get_task_detail_view(task_id: int) -> dict:
-    for task in TASKS:
-        if task["id"] == task_id:
-            return task
-    return {"message": "task not found"}
+def get_task_detail_view(task_id: int = Path(ge=1)) -> Response:
+    with Session(engine) as session:
+        task: Tasks | None = session.query(Tasks).get(task_id)
 
-
-# def get_task_detail_view(task_id: int = Path(ge=1)) -> Response:
-#     with Session(engine) as session:
-#         task: Tasks | None = session.query(Tasks).get(task_id)
-
-#     if task:
-#         return Response(
-#             content=json.dumps(
-#                 {
-#                     "id": task.id,
-#                     "title": task.title,
-#                     "description": task.description,
-#                     "status": task.status,
-#                 }
-#             ),
-#             headers={"Content-Type": "application/json"},
-#         )
-#     return Response(
-#         content=json.dumps({"message": "task not found"}),
-#         status_code=status.HTTP_404_NOT_FOUND,
-#         headers={"Content-Type": "application/json"},
-#     )
+    if task:
+        return Response(
+            content=json.dumps(
+                {
+                    "id": task.id,
+                    "title": task.title,
+                    "description": task.description,
+                    "status": task.status,
+                }
+            ),
+            headers={"Content-Type": "application/json"},
+        )
+    return Response(
+        content=json.dumps({"message": "task not found"}),
+        status_code=status.HTTP_404_NOT_FOUND,
+        headers={"Content-Type": "application/json"},
+    )
 
 
 @app.post("/api/tasks")
